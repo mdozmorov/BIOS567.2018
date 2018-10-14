@@ -268,7 +268,15 @@ https://www.ebi.ac.uk/QuickGO/
 - **IntAct**, protein-protein interaction data and networks, https://www.ebi.ac.uk/intact/
 - **HPRD**, protein-protein interaction database, http://www.hprd.org/
 
-## Enrichment analysis: Null hypothesis
+# Enrichment analysis
+
+## Types of enrichment analyses
+
+- **First generation** - traditional overrepresentation analyses, hypergeometric distribution-based test whether genes of interest (i.e., differentially expressed) are overrepresented in functional gene sets.
+- **Second generation** - tests the tendency of gene set members to appear rather at the top or bottom of the ranked list of all measured genes.
+- **Third generation** - network- or topology-based tests, consider relationships among genes.
+
+## First generation enrichment analysis: Null hypothesis
 
 - **Self-contained $H_0$**: genes in the gene set do not have any association with the pheontype
 
@@ -278,7 +286,7 @@ https://www.ebi.ac.uk/QuickGO/
 \includegraphics[height=150px]{img/self_vs_competitive.png}
 \end{center}
 
-## Enrichment analysis: Null hypothesis
+## First generation enrichment analysis: Null hypothesis
 
 - **Competitive $H_0$**: genes in the gene set have the same level of association with a given phenotype as genes in the complement gene set
 
@@ -288,7 +296,7 @@ https://www.ebi.ac.uk/QuickGO/
 \includegraphics[height=150px]{img/self_vs_competitive.png}
 \end{center}
 
-## Overrepresentation analysis, Hypergeometric test
+## Hypergeometric test
 
 - $m$ is the total number of genes
 - $j$ is the number of genes are in the functional category
@@ -299,7 +307,7 @@ https://www.ebi.ac.uk/QuickGO/
 \includegraphics[height=120px]{img/hypergeometric.png}
 \end{center}
 
-## Overrepresentation analysis, Hypergeometric test
+## Hypergeometric test
 
 - $m$ is the total number of genes
 - $j$ is the number of genes are in the functional category
@@ -310,7 +318,7 @@ The expected value of $k$ would be $k_e=(n/m)*j$.
 
 If $k > k_e$, functional category is said to be enriched, with a ratio of enrichment $r=k/k_e$
 
-## Overrepresentation analysis, Hypergeometric test
+## Hypergeometric test
 
 - $m$ is the total number of genes
 - $j$ is the number of genes are in the functional category
@@ -323,7 +331,7 @@ If $k > k_e$, functional category is said to be enriched, with a ratio of enrich
 | Not in gene set    |       n-k        |         m-n-j+k      | m-j   |
 | Total              |       n          |           m-n        |  m    |
 
-## Overrepresentation analysis, Hypergeometric test
+## Hypergeometric test
 
 - $m$ is the total number of genes
 - $j$ is the number of genes are in the functional category
@@ -334,7 +342,7 @@ What is the probability of having $k$ or more genes from the category in the sel
 
 $$P = \sum_{i=k}^n{\frac{\binom{m-j}{n-i}\binom{j}{i}}{{m \choose n}}}$$
 
-## Overrepresentation analysis, Hypergeometric test
+## Hypergeometric test
 
 - $m$ is the total number of genes
 - $j$ is the number of genes are in the functional category
@@ -345,7 +353,7 @@ $k < (n/m)*j$ - underrepresentation. Probability of $k$ or less genes from the c
 
 $$P = \sum_{i=0}^k{\frac{\binom{m-j}{n-i}\binom{j}{i}}{{m \choose n}}}$$
 
-## Overrepresentation analysis, Hypergeometric test
+## Hypergeometric test
 
 1. Find a set of differentially expressed genes (DEGs)
 2. Are _DEGs in a set_ more common than _DEGs not in a set_?
@@ -370,7 +378,7 @@ $$P = \sum_{i=0}^k{\frac{\binom{m-j}{n-i}\binom{j}{i}}{{m \choose n}}}$$
 
 \tiny https://www.ncbi.nlm.nih.gov/pubmed/23934932
 
-## GSEA: Gene set enrichment analysis
+## Secong generation: Gene set enrichment analysis (GSEA)
 
 - **Gene set analysis (GSA)**. Mootha et al., 2003; modified by Subramanian, et al. "**Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles.**" PNAS 2005 http://www.pnas.org/content/102/43/15545.abstract
 - Main rationale – functionally related genes often display a coordinated expression to accomplish their roles in the cells
@@ -459,7 +467,7 @@ $$\max_{1 \le j \le N} \sum_{i=1}^j{X_{Ri}}$$
 - Under the null hypothesis (and assuming a linear model) the residuals are independent and identically distributed $N(0,\sigma_g^2)$.
 - We can _rotate_ the residual vector for each gene in a gene set, such that gene-gene expression correlations are preserved.
 
-## Other approaches
+## Third generation: network- or topology-based analyses
 
 **Impact analysis** - incorporates topology of the pathway.
 
@@ -471,7 +479,7 @@ $$\max_{1 \le j \le N} \sum_{i=1}^j{X_{Ri}}$$
 \includegraphics[height=140px]{img/insulin.png}
 \end{center}
 
-## Other approaches
+## Third generation: network- or topology-based analyses
 
 - **Pathway-Express**, http://vortex.cs.wayne.edu/projects.htm#Pathway-Express
 
@@ -483,7 +491,7 @@ Sorin Draghici et al., “A Systems Biology Approach for Pathway Level Analysis,
 
 Adi Laurentiu Tarca et al., “A Novel Signaling Pathway Impact Analysis,” _Bioinformatics_.  2009
 
-## Gene set enrichment analysis
+## Tools for Gene set enrichment analysis
 
 - **GSEA** (https://www.broadinstitute.org/gsea/index.jsp) - Better way of doing enrichment analysis
 - **g:Profiler** (http://biit.cs.ut.ee/gprofiler/) - gene ID converter, GO and pathway enrichment, and more
@@ -492,17 +500,17 @@ Adi Laurentiu Tarca et al., “A Novel Signaling Pathway Impact Analysis,” _Bi
 - **DAVID** (https://david.ncifcrf.gov/) - Newly updated gene enrichment analysis
 - **FRY** (http://shiny.bioinf.wehi.edu.au/giner.g/FRY_GeneSetExplorerApp/) - Fast Interactive Biological Pathway Miner, from WEHI group 
 
-## Gene set enrichment analysis | DIY 
+## Tools for Gene set enrichment analysis
 
 - **clusterProfiler** (https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) - statistical analysis and visualization of functional profiles for genes and gene clusters
 - **limma** (https://bioconductor.org/packages/release/bioc/html/limma.html) - Linear Models for Microarray Data, includes functional enrichment functions `goana`, `camera`, `roast`, `romer`
 - **GOstats** (https://www.bioconductor.org/packages/2.8/bioc/html/GOstats.html) - tools for manimpuating GO and pathway enrichment analyses. https://github.com/mdozmorov/MDmisc/blob/master/R/gene_enrichment.R
 
-## Full analysis pipelines
+## Tools for Gene set enrichment analysis
 
 \scriptsize
 
-**EnrichmentBrowser** - R package for microarray/RNA-seq normalization, differential analysis, functional enrichment- and network analyses and visualization
+**EnrichmentBrowser** - R package for microarray/RNA-seq normalization, differential analysis, overrepresentation-, enrichment- and network analyses and visualization
 
 - **Functional enrichment methods** - **ORA**: Overrepresentation Analysis, **SAFE**: Significance Analysis of Function and Expression, **GSEA**: Gene Set Enrichment Analysis, **PADOG**: Pathway Analysis with Down-weighting of Overlapping Genes, **ROAST**: ROtAtion gene Set Test, **CAMERA**: Correlation Adjusted MEan RAnk gene set test, **GSA**: Gene Set Analysis, **GSVA**: Gene Set Variation Analysis, **GLOBALTEST**: Global testing of groups of genes, **SAMGS**: Significance Analysis of Microarrays on Gene Sets, **EBM**: Empirical Brown’s Method, **MGSA**: Model-based Gene Set Analysis.
 
